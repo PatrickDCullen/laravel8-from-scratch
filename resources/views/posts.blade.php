@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-
-<title>My blog</title>
-<link rel="stylesheet" href="/app.css">
-
-<body>
+<x-layout>
     @foreach ($posts as $post)
         <article>
             <h1>
@@ -11,10 +6,10 @@
                     {{ $post->title }}
                 </a>
             </h1>
-
             <div>
                 {{ $post->excerpt }}
             </div>
         </article>
     @endforeach
-</body>
+</x-layout>
+
