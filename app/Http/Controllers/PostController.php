@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -10,6 +11,8 @@ class PostController extends Controller
 {
     public function index()
     {
+        // $this->authorize('admin');
+
         return view('posts.index', [
             'posts' => Post::latest()->filter(
                         request(['search', 'category', 'author'])
