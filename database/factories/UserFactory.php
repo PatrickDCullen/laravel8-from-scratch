@@ -27,7 +27,10 @@ class UserFactory extends Factory
             'username' => $this->faker->unique()->username(),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            // We set a mutator on the User model, so we do away with bcrypt("password") here
+            // so that we don't encrypt it twice, leaving us unable to login as users that
+            // we create.
+            'password' => 'password',
             'remember_token' => Str::random(10),
         ];
     }
