@@ -29,6 +29,7 @@ class PostFactory extends Factory
             'title' => $this->faker->sentence(),
             'slug' => $this->faker->slug(),
             // Random number 1 through 5 is based on number of default thumbnails in public/storage/images
+            // as well as naming convention used
             'thumbnail' => "images/illustration-" . rand(1, 5) . ".png",
             'excerpt' => '<p>' . implode('</p><p>', $this->faker->paragraphs(2)) . '</p>',
             'body' => '<p>' . implode('</p><p>', $this->faker->paragraphs(6)) . '</p>',
