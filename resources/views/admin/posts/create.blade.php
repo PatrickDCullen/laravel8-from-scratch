@@ -3,11 +3,11 @@
         <form method="POST" action="/admin/posts" enctype="multipart/form-data"/>
             @csrf
 
-            <x-form.input name="title" />
-            <x-form.input name="slug" />
-            <x-form.input name="thumbnail" type="file" />
-            <x-form.textarea name="excerpt"/>
-            <x-form.textarea name="body" />
+            <x-form.input name="title" required/>
+            <x-form.input name="slug" required/>
+            <x-form.input name="thumbnail" type="file" required/>
+            <x-form.textarea name="excerpt" required>{{ old('excerpt') }}</x-form.textarea>
+            <x-form.textarea name="body" required>{{ old('body') }}</x-form.textarea>
 
             <x-form.field>
                 <x-form.label name="category" />

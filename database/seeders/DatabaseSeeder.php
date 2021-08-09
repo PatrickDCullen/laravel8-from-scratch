@@ -22,8 +22,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'john@doe.com',
         ]);
 
-        Post::factory(5)->create([
-            'user_id' => $admin->id
+        Post::factory(6)->create([
+            'user_id' => $admin->id,
         ]);
     }
 }
