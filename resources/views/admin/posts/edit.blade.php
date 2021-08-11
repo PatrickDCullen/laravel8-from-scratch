@@ -34,6 +34,16 @@
                 <x-form.error name="category" />
             </x-form.field>
 
+            @if ((bool)!$post->is_published)
+                <x-form.field>
+                    <x-form.label name="Do you want to publish your post?" />
+                    <select name="is_published" id="is_published">
+                        <option value=1 >Yes</option>
+                        <option value=0 selected>No, keep it as a draft</option>
+                    </select>
+                </x-form.field>
+            @endif
+
             <x-form.button>Update</x-form.button>
         </form>
     </x-setting>

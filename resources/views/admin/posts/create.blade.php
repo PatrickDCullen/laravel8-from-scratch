@@ -24,6 +24,14 @@
                 <x-form.error name="category" />
             </x-form.field>
 
+            <x-form.field>
+                <x-form.label name="Do you want to publish your post?" />
+                <select name="is_published" id="is_published">
+                    <option value=1 >Yes</option>
+                    <option value=0 selected>No, keep it as a draft</option>
+                </select>
+            </x-form.field>
+
             <x-form.button>Publish</x-form.button>
         </form>
     </x-setting>
