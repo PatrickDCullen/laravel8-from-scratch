@@ -39,11 +39,9 @@ class AdminPostController extends Controller
     {
         $attributes = $this->validatePost($post);
 
-
         if ($attributes['thumbnail'] ?? false) {
             $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
         }
-
 
         if (is_null($post->published_at) && $attributes['is_published'] == 1) {
             $attributes['published_at'] = now();
@@ -72,7 +70,7 @@ class AdminPostController extends Controller
             'excerpt' => 'required',
             'body' => 'required',
             'category_id' => ['required', Rule::exists('categories', 'id')],
-            'is_published' => 'required',
+            'is_published' => !$post->is_published ? 'required' : '',
         ]);
     }
 }

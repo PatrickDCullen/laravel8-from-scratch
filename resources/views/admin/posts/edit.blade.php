@@ -41,26 +41,30 @@
                 <x-form.error name="category" />
             </x-form.field>
 
-            <x-form.field>
-                <x-form.label name="Publish post on main page?" />
-                <select name="is_published" id="is_published">
-                    <option
-                        value=1
-                        {{ old('is_published', $post->is_published) == 1 ? 'selected' : ''  }}
-                    >
-                        Yes
-                    </option>
+            @if ((bool)(!$post->is_published))
+                <x-form.field>
+                    <x-form.label name="Publish post on main page?" />
+                    <select name="is_published" id="is_published">
+                        <option
+                            value=1
+                            {{ old('is_published', $post->is_published) == 1 ? 'selected' : ''  }}
+                        >
+                            Yes
+                        </option>
 
-                    <option
-                        value=0
-                        {{ old('is_published', $post->is_published) == 0 ? 'selected' : ''  }}
-                    >
-                        No
-                    </option>
-                </select>
+                        <option
+                            value=0
+                            {{ old('is_published', $post->is_published) == 0 ? 'selected' : ''  }}
+                        >
+                            No
+                        </option>
+                    </select>
 
+                    <x-form.error name="is_published" />
+                </x-form.field>
+            @else
                 <x-form.error name="is_published" />
-            </x-form.field>
+            @endif
 
             <x-form.button>Update</x-form.button>
         </form>
