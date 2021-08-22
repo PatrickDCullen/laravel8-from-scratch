@@ -4,16 +4,23 @@
             @csrf
             @method('PATCH')
 
-            <x-form.input name="title" :value="old('title', $post->title)" />
-            <x-form.input name="slug" :value="old('slug', $post->slug)"/>
+            <x-form.input name="title"
+            :value="old('title', $post->title)"
+            required
+            />
 
+            <x-form.input name="slug" :value="old('slug', $post->slug)"/>
 
             <div class="flex mt-6">
                 <div class="flex-1">
-                    <x-form.input name="thumbnail" type="file" :value="old('thumbnail', $post->thumbnail)"/>
+                    <x-form.input
+                        name="thumbnail"
+                        type="file"
+                        :value="old('thumbnail', $post->thumbnail)"
+                    />
                 </div>
 
-                <img src="{{ asset('storage/' . $post->thumbnail) }}" alt="" class="rounded-xl ml-6" width="100">
+                <x-post-thumbnail :thumbnail="$post->thumbnail" :width="100" />
             </div>
 
             <x-form.textarea name="excerpt">{{ old('excerpt', $post->excerpt) }}</x-form.textarea>
@@ -34,15 +41,26 @@
                 <x-form.error name="category" />
             </x-form.field>
 
-            @if ((bool)!$post->is_published)
-                <x-form.field>
-                    <x-form.label name="Do you want to publish your post?" />
-                    <select name="is_published" id="is_published">
-                        <option value=1 >Yes</option>
-                        <option value=0 selected>No, keep it as a draft</option>
-                    </select>
-                </x-form.field>
-            @endif
+            <x-form.field>
+                <x-form.label name="Publish post on main page?" />
+                <select name="is_published" id="is_published">
+                    <option
+                        value=1
+                        {{ old('is_published', $post->is_published) == 1 ? 'selected' : ''  }}
+                    >
+                        Yes
+                    </option>
+
+                    <option
+                        value=0
+                        {{ old('is_published', $post->is_published) == 0 ? 'selected' : ''  }}
+                    >
+                        No
+                    </option>
+                </select>
+
+                <x-form.error name="is_published" />
+            </x-form.field>
 
             <x-form.button>Update</x-form.button>
         </form>
