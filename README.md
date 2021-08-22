@@ -1,62 +1,99 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Laravel Blog (Laracasts Laravel 8 From Scratch Series)
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This project is a blog website with an admin panel written in [Laravel](https://laravel.com/). It was made by
+following along the [Laracasts](https://laracasts.com/) series [Laravel 8 From Scratch](https://laracasts.com/series/laravel-8-from-scratch). 
 
-## About Laravel
+Commits with a message that begins with "End Ep" reflect code written along with the series- 
+commits without "End Ep" reflect my own work adding features, following along with the 
+Further Ideas section of the [original repository](https://github.com/JeffreyWay/Laravel-From-Scratch-Blog-Project#further-ideas).
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Getting Started
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Follow these steps in your terminal to get this project running on your machine in development mode.
+Code meant for a file within the project is indicated by a comment with the filename.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+First, navigate to the directory where you would like the laravel8-from-scratch project to appear.
 
-## Learning Laravel
+```
+cd your/preferred/directory
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Clone the project from this repository to your local machine.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```
+git clone https://github.com/PatrickDCullen/laravel8-from-scratch.git
+```
 
-## Laravel Sponsors
+Navigate to the new directory for the project.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+```
+cd laravel8-from-scratch
+```
 
-### Premium Partners
+Install all the dependencies with Composer.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
+```
+composer install
+```
 
-## Contributing
+Create a .env file and set your database password.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```
+cp .env.example .env
+```
+```
+// .env
+DB_DATABASE=laravel8_from_scratch
+DB_PASSWORD=password
+```
 
-## Code of Conduct
+Create the database.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```
+mysql -u root -p
+```
+```
+create database laravel8_from_scratch;
+exit;
+```
 
-## Security Vulnerabilities
+Generate the application key.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```
+php artisan key:generate
+```
 
-## License
+Run migrations and seed the database. 
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```
+php artisan migrate --seed
+```
+
+Create the symbolic links for the application.
+```
+php artisan storage:link
+```
+
+Serve the application.
+```
+php artisan serve
+```
+
+Sign in with an email of john@doe.com and a password of password to use the website as an admin, or register your own user.
+
+## Next Steps
+
+These features come directly from the [original repository](https://github.com/JeffreyWay/Laravel-From-Scratch-Blog-Project#further-ideas).
+
+1. <strike>Add a `status` column to the posts table to allow for posts that are still in a "draft" state. Only when this status is changed to "published" should they show up in the blog feed.</strike>
+2. Update the "Edit Post" page in the admin section to allow for changing the author of a post.
+3. Add an RSS feed that lists all posts in chronological order.
+4. Record/Track and display the "views_count" for each post.
+5. Allow registered users to "follow" certain authors. When they publish a new post, an email should be delivered to all followers.
+6. Allow registered users to "bookmark" certain posts that they enjoyed. Then display their bookmarks in a corresponding settings page.
+7. Add an account page to update your username and upload an avatar for your profile.
+
+## Author
+
+Patrick Cullen
+
