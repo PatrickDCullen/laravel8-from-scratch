@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Category;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PostFactory extends Factory
@@ -28,12 +29,18 @@ class PostFactory extends Factory
             'category_id' => Category::factory(),
             'title' => $this->faker->sentence(),
             'slug' => $this->faker->slug(),
-            // Random number 1 through 5 is based on number of default thumbnails in public/storage/images
-            // as well as naming convention used
-            'thumbnail' => "images/illustration-" . rand(1, 5) . ".png",
+            'thumbnail' => $this->randomThumbnail(),
             'is_published' => true,
             'excerpt' => '<p>' . implode('</p><p>', $this->faker->paragraphs(2)) . '</p>',
             'body' => '<p>' . implode('</p><p>', $this->faker->paragraphs(6)) . '</p>',
         ];
+    }
+
+    public function randomThumbnail()
+    {
+        $thumbnailsArray = Storage::files('thumbnails');
+        $thumbnailsArrayMax = count($thumbnailsArray) - 1;
+        $randomThumbnail = $thumbnailsArray[rand(0, $thumbnailsArrayMax)];
+        return $randomThumbnail;
     }
 }

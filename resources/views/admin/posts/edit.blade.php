@@ -20,7 +20,7 @@
                     />
                 </div>
 
-                <x-post-thumbnail :thumbnail="$post->thumbnail" :width="100" />
+                <img src="{{ asset('storage/' . $post->thumbnail) }}" alt="Blog Post illustration" class="rounded-xl" width=100>
             </div>
 
             <x-form.textarea name="excerpt">{{ old('excerpt', $post->excerpt) }}</x-form.textarea>
