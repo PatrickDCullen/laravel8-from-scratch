@@ -4,12 +4,10 @@
             @csrf
             @method('PATCH')
 
-            <x-form.input name="title"
-            :value="old('title', $post->title)"
-            required
-            />
-
+            <x-form.input name="title" :value="old('title', $post->title)" required/>
             <x-form.input name="slug" :value="old('slug', $post->slug)"/>
+            <x-form.input name="author" :value="old('author', $post->author->username)" />
+            <p class="text-red-500 text-xs mt-2">{{ session('author username error') }}</p>
 
             <div class="flex mt-6">
                 <div class="flex-1">
